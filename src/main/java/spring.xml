@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd"
+		default-init-method="start"
+		default-destroy-method="end"
+		default-lazy-init="true"
+		> 
+		
+		<!-- Four Ways to init and destroy
+			1. having init method
+			2. at beans level you can declare default
+		 scope="singleton"  default scope
+		 -->
+	<bean name="customer" 
+				class="com.h2k.spring.Customer" >
+		<constructor-arg name="city" value="New York"/>
+		<property name="firstName"  value="David" />
+		<property name="lastName"  value="Nix" />
+		<property name="language"  value="English" />
+	</bean>
+	<!-- Do not use  scope="prototype" unless you are absolutely clear -->
+
+	<!-- autowiring - automatically wire the beans together -->
+	<bean name="msword" class="com.h2k.spring.MSWord" >
+			<!-- constructor-arg Dependency injection with inner beans-->
+		<constructor-arg name="spellChecker">
+			<bean class="com.h2k.spring.SpellChecker">
+				<constructor-arg name="language" value="English"/>
+			</bean>
+		</constructor-arg>
+		
+		<property name="docTitle"  value="Resume" />
+		<property name="docLanguage"  value="English" />
+	</bean>
+	
+	<!-- 
+	<bean name="spellCheck" class="com.h2k.spring.SpellChecker">
+		<constructor-arg name="language" value="English"/>
+	</bean>  -->
+	
+	<!-- For autowiring by Type 
+	<bean name="spellCheckerSpanish" class="com.h2k.spring.SpellChecker">
+		<constructor-arg name="language" value="Spanish"/>
+	</bean>  -->
+
+</beans>
