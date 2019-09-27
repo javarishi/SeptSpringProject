@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xmlns:p="http://www.springframework.org/schema/p"
+		xmlns:context="http://www.springframework.org/schema/context" 
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+				http://www.springframework.org/schema/beans/spring-beans.xsd 
+				http://www.springframework.org/schema/context 
+				http://www.springframework.org/schema/context/spring-context.xsd"
+				default-lazy-init="true">
+	
+	<context:annotation-config />
+	
+	<bean name="custFactoryInstance"
+		class = "com.h2k.spring.Customer" 
+		factory-bean="factoryBean"
+		factory-method="getInstance">
+	</bean>
+	
+	<bean name="factoryBean" class="com.h2k.spring.CustomerFactory"/>
+	
+	<!--  This constructor-arg takes and maps with type -->
+	<bean name="store" class="com.h2k.spring.Store">
+		<constructor-arg type="int" index="1" value="30080"/>
+		<constructor-arg type="int" index="0" value="30000"/>
+	</bean>
+	
+	<!--  This constructor-arg takes and maps with index -->
+	<bean name="storeTwo" class="com.h2k.spring.Store">
+		<constructor-arg index="0" value="33600"/>
+		<constructor-arg index="1" value="33639"/>
+	</bean>
+	
+	<bean id="pCust" class="com.h2k.spring.Customer" 
+		p:firstName="David" 
+		p:lastName="Nix" 
+		p:language="English" 
+		p:city="city"/>
+		
+	<bean name="collect" class="com.h2k.spring.CollectionTest">
+		<property name="adminEmails">
+			<props>
+				<prop key="admin">administrator@something.com</prop>
+				<prop key="contact">contacts@something.com</prop>
+				<prop key="support">support@something.com</prop>
+				<prop key="technicals">technicals@something.com</prop>
+			</props>
+		</property>
+		<property name="someList">
+			<list>
+				<value>Name One</value>
+				<value>Name Two</value>
+				<value>Name Three</value>
+				<value>Name FOur</value>
+			</list>
+		</property>
+		<property name="sampleSet">
+			<set>
+				<value>Set Name One</value>
+				<value>Set Name Two</value>
+				<value>Set Name Two</value>
+				<value>Set Name Four</value>
+			</set>
+		</property>
+		<property name="someMap">
+			<map>
+				<entry key="TestKey1" value="ValueKey1" />
+				<entry key="TestKey2" value="ValueKey2" />
+				<entry key="TestKey3" value="ValueKey3" />
+			</map>
+		
+		</property>
+	
+	</bean>
+
+</beans> 

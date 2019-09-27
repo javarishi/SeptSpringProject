@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xmlns:context="http://www.springframework.org/schema/context" 
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+				http://www.springframework.org/schema/beans/spring-beans.xsd 
+				http://www.springframework.org/schema/context 
+				http://www.springframework.org/schema/context/spring-context.xsd"
+				default-lazy-init="true">
+	
+	<context:annotation-config />
+	
+	<bean name="account" class="com.h2k.spring.day3.Account">
+		<property name="custName" value="David" />
+	<!-- 	<property name="accountNumber" value="213213" />  -->
+	</bean>
+	
+	
+	<bean name="helloWorld" abstract="true" >
+		<property name="message" value="Hello!!" />
+	</bean>
+	
+	<bean name="helloUS" 
+			class="com.h2k.spring.day3.HelloUS" 
+			parent="helloWorld">
+		<property name="message2" value="Hola!!" />
+	</bean>
+	
+	<bean name="cachingMovieLister" class="com.h2k.spring.day3.CachingMovieLister">
+	</bean>
+	
+	<bean class="com.h2k.spring.day3.AuditPostProcessor"/>
+	
+</beans> 
